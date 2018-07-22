@@ -46,4 +46,41 @@ public class TestSolution1 {
 		assertEquals(expectedRow, reservedSeats[0]);
 
 	}
+	
+	@Test
+	public void TestReserveSeats() {
+		Solution1 sol = new Solution1();
+
+		int seats[] = new int[1];
+		String resevedSeats = "1C 1H 1B 1J 1D";
+		int expectedRows[] = new int[] { 0b011_1000_110 };
+		//
+		sol.reserveSeats(resevedSeats, seats);
+		//
+		for(int i=0;i<seats.length; i++) {
+			assertEquals(expectedRows[i], seats[i]);
+		}
+		
+		seats = new int[2];
+		resevedSeats = "1A 2F 1C";
+		expectedRows = new int[] { 0b101_0000_000, 0b000_0010_000 };
+		//
+		sol.reserveSeats(resevedSeats, seats);
+		//
+		for(int i=0;i<seats.length; i++) {
+			assertEquals(expectedRows[i], seats[i]);
+		}
+		
+		seats = new int[4];
+		resevedSeats = "2C 3A 1H 4J 2I 1C 4G 1G";// additional 2I should have NO influence
+		expectedRows = new int[] { 0b001_0001_100, 0b001_0000_000, 0b100_0000_000, 0b000_0001_010  };
+		//
+		sol.reserveSeats(resevedSeats, seats);
+		//
+		for(int i=0;i<seats.length; i++) {
+			assertEquals(expectedRows[i], seats[i]);
+		}
+
+	}
+
 }
