@@ -23,13 +23,14 @@ public class Solution1 {
 		return 0;
 	}
 	
-	void reserveSeats(String S, int reservedSeats[]) {
-		String seats[] = S.split(" ");
-		Arrays.stream(seats).forEach(System.out::println);
-		
+	void reserveSeats(String reservedSeats, int seats[]) {
+		String reservedSeatsTab[] = reservedSeats.split(" ");
+		for(String s : reservedSeatsTab) {
+			convertSeatToBinary(s, seats);
+		}
 	}
 	
-	void convertSeatToBinary(String seat, int reservedSeats[]) {
+	void convertSeatToBinary(String seat, int seats[]) {
 		int row = Integer.parseInt(seat.substring(0, 1)) - 1;
 		int seatCode = seat.substring(1, 2).toUpperCase().codePointAt(0);
 		//
@@ -39,12 +40,12 @@ public class Solution1 {
 		} else if(seatCode>73) { // as there is No letter 'I'
 			takenSeat = 1 << (75 - seatCode);
 		}
-		reservedSeats[row] = reservedSeats[row]  | takenSeat;
+		seats[row] = seats[row]  | takenSeat;
 	}
 	
-	private void printSeats(int reservedSeats[]) {
-		int N = reservedSeats.length;
-		System.out.println(Arrays.toString(reservedSeats));
+	private void printSeats(int seats[]) {
+		int N = seats.length;
+		System.out.println(Arrays.toString(seats));
 	}
 	
 
