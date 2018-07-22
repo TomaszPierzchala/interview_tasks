@@ -1,2 +1,1 @@
-# interview_tasks
-Java 8 sollutions of interview tasks
+# Java 8 solutions of interview tasks:
