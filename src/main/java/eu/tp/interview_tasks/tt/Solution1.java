@@ -29,8 +29,17 @@ public class Solution1 {
 		
 	}
 	
-	void convertSeatToBinary(String seat, int reservedSeat[]) {
-		
+	void convertSeatToBinary(String seat, int reservedSeats[]) {
+		int row = Integer.parseInt(seat.substring(0, 1)) - 1;
+		int seatCode = seat.substring(1, 2).toUpperCase().codePointAt(0);
+		//
+		int takenSeat = 0;
+		if(seatCode<73) {// letter I has Unicode 73
+			takenSeat = 1 << (74 - seatCode);
+		} else if(seatCode>73) { // as there is No letter 'I'
+			takenSeat = 1 << (75 - seatCode);
+		}
+		reservedSeats[row] = reservedSeats[row]  | takenSeat;
 	}
 	
 	private void printSeats(int reservedSeats[]) {
