@@ -123,13 +123,13 @@ public class TestSolution1 {
 		resevedSeats = "1C 10G 1B";
 		result = sol.solution(N, resevedSeats);
 		//
-		assertEquals(150-2, result);
+		assertEquals(150-1, result);
 		
 		N = 50;
 		resevedSeats = "1C 10G 1B 7F 50K";
 		result = sol.solution(N, resevedSeats);
 		//
-		assertEquals(150-4, result);
+		assertEquals(150-3, result);
 
 	}
 }
