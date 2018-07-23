@@ -43,8 +43,11 @@ public class Solution1 {
 	
 	void convertSeatToBinary(String seat, int seats[]) {
 		if(seat.trim().length()==0) return;
-		int row = Integer.parseInt(seat.substring(0, 1)) - 1;
-		int seatCode = seat.substring(1, 2).toUpperCase().codePointAt(0);
+		
+		final int INPUT_STRING_LENGTH = seat.length();
+		
+		int row = Integer.parseInt(seat.substring(0, INPUT_STRING_LENGTH-1)) - 1;
+		int seatCode = seat.substring(INPUT_STRING_LENGTH-1, INPUT_STRING_LENGTH).toUpperCase().codePointAt(0);
 		//
 		int takenSeat = 0;
 		if(seatCode<73) {// letter I has Unicode 73
