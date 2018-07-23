@@ -82,5 +82,42 @@ public class TestSolution1 {
 		}
 
 	}
+	
+	@Test
+	public void TestSolution() {
+		Solution1 sol = new Solution1();
+		
+		int N = 2;
+//		int seats[] = new int[N];
+		String resevedSeats = "1A 2F 1C";
+		//
+		int result = sol.solution(N, resevedSeats);
+		//
+		assertEquals(4, result);
+		
+		N = 1;
+		resevedSeats = "";
+		result = sol.solution(N, resevedSeats);
+		//
+		assertEquals(3, result);
+		
+		N = 45;
+		resevedSeats = "";
+		result = sol.solution(N, resevedSeats);
+		//
+		assertEquals(3*45, result);
 
+		N = 50;
+		resevedSeats = "1C 10G 1B";
+		result = sol.solution(N, resevedSeats);
+		//
+		assertEquals(150-2, result);
+		
+		N = 50;
+		resevedSeats = "1C 10G 1B 7F 50K";
+		result = sol.solution(N, resevedSeats);
+		//
+		assertEquals(150-4, result);
+
+	}
 }
