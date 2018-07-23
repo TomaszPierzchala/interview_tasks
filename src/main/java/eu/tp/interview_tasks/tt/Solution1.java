@@ -7,13 +7,17 @@ public class Solution1 {
 	final private static int FIRST  = 0b111_0000_000;
 	final private static int SECOND = 0b000_1111_000;
 	final private static int THIRD  = 0b000_0000_111;
-	final private static int ROW_FAMILY_GROUPS[] = { FIRST, SECOND, THIRD}; 
+	final private static int ROW_FAMILY_GROUPS[] = { FIRST, SECOND, THIRD }; 
 	
 	public static void main(String[] args) {
 		String reservedSeats = "1A 2F 1C";
 		
 		Solution1 sol = new Solution1();
-		sol.solution(2, reservedSeats);
+		
+		int N = 2;
+		System.out.println("Example of algorithm run :\nN = " + N 
+				+ "\nfor given taken seats :\"" + reservedSeats 
+				+ "\"\nresult is : " + sol.solution(N, reservedSeats) );
 	}
 	
 	public int solution(int N, String S) {
@@ -23,11 +27,11 @@ public class Solution1 {
 		final int seats[] = new int[N];
 		
 		reserveSeats(S, seats);
-//		printSeats(seats);
+		// printSeats(seats);
 		
 		return (int) Arrays.stream(seats).map(i->(i^0b111_1110_111 | i^0b111_0111_111)) // to pass empty seats only
 		.flatMap(i-> ( Arrays.stream(ROW_FAMILY_GROUPS).map(famGroup-> ((i&famGroup|famGroup) == (i&famGroup)) ? 1:0) ) )
-		.peek(System.out::println) /*debug only */
+		//.peek(System.out::println) /*debug only */
 		.filter(r->r==1).count();
 		
 	}
