@@ -44,6 +44,18 @@ public class TestSolution1 {
 		expectedRow = 0b101_1010_011;
 		sol.convertSeatToBinary("1K", reservedSeats);
 		assertEquals(expectedRow, reservedSeats[0]);
+		
+		
+		final int N2 = 25;
+		final int reservedSeats2[] = new int[N2];
+		
+		expectedRow = 0b000_0000_001;
+		sol.convertSeatToBinary("21K", reservedSeats2);
+		assertEquals(expectedRow, reservedSeats2[20]);
+		
+		expectedRow = 0b000_0010_000;
+		sol.convertSeatToBinary("17F", reservedSeats2);
+		assertEquals(expectedRow, reservedSeats2[16]);
 
 	}
 	
