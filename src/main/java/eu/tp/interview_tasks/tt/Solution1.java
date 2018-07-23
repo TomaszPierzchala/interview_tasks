@@ -23,9 +23,7 @@ public class Solution1 {
 		final int seats[] = new int[N];
 		
 		reserveSeats(S, seats);
-		printSeats(seats);
-		
-		//IntStream rowFamilyGroups = IntStream.of(FIRST, SECOND, THIRD);
+//		printSeats(seats);
 		
 		return (int) Arrays.stream(seats).map(i->(i^0b111_1110_111 | i^0b111_0111_111)) // to pass empty seats only
 		.flatMap(i-> ( Arrays.stream(ROW_FAMILY_GROUPS).map(famGroup-> ((i&famGroup|famGroup) == (i&famGroup)) ? 1:0) ) )
