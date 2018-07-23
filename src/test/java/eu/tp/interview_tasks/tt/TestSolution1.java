@@ -93,6 +93,16 @@ public class TestSolution1 {
 			assertEquals(expectedRows[i], seats[i]);
 		}
 
+		seats = new int[2];
+		// the algorithm is also STABLE when taken seats are repeated !
+		resevedSeats = "1A 2B 2F 1C 2G 1A 1C 2H 2B";
+		expectedRows = new int[] { 0b101_0000_000, 0b010_0011_100 };
+		//
+		sol.reserveSeats(resevedSeats, seats);
+		//
+		for(int i=0;i<seats.length; i++) {
+			assertEquals(expectedRows[i], seats[i]);
+		}
 	}
 	
 	@Test
@@ -129,6 +139,16 @@ public class TestSolution1 {
 		result = sol.solution(N, reservedSeats);
 		//
 		assertEquals(150-3, result);
-
+		
+		N = 2;
+		// the algorithm is also STABLE when taken seats are repeated !
+		reservedSeats = "1A 2B 2F 1C 2G 1A 1C 2H 2B";
+		/*    A B C  D E F G   H J K
+		 * 1  x   x  - - - -   - - -
+		 * 2    x        x x   x
+		 */
+		result = sol.solution(N, reservedSeats);
+		//
+		assertEquals(2, result);
 	}
 }
