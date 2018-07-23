@@ -44,6 +44,7 @@ public class Solution3 {
 					break;
 				default:
 					Integer number = Integer.valueOf(command[i]);
+					if(number<0 || number>MAX) throw new RuntimeException("Machine input out of range Error");
 					stack.push(number);
 					break;
 				}
