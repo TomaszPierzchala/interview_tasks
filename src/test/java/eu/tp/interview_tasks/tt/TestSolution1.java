@@ -11,51 +11,51 @@ public class TestSolution1 {
 		Solution1 sol = new Solution1();
 		
 		final int N = 2;
-		final int reservedSeats[] = new int[N];
+		final int seats[] = new int[N];
 		
 		int expectedRow = 0b100_0000_000;
-		sol.convertSeatToBinary("1A", reservedSeats);
-		assertEquals(expectedRow, reservedSeats[0]);
+		sol.convertSeatToBinary("1A", seats);
+		assertEquals(expectedRow, seats[0]);
 		
 		expectedRow = 0b101_0000_000;
-		sol.convertSeatToBinary("1C", reservedSeats);
-		assertEquals(expectedRow, reservedSeats[0]);
+		sol.convertSeatToBinary("1C", seats);
+		assertEquals(expectedRow, seats[0]);
 		
 		expectedRow = 0b101_1000_000;
-		sol.convertSeatToBinary("1D", reservedSeats);
-		assertEquals(expectedRow, reservedSeats[0]);
+		sol.convertSeatToBinary("1D", seats);
+		assertEquals(expectedRow, seats[0]);
 		
 		expectedRow = 0b101_1010_000;
-		sol.convertSeatToBinary("1F", reservedSeats);
-		assertEquals(expectedRow, reservedSeats[0]);
+		sol.convertSeatToBinary("1F", seats);
+		assertEquals(expectedRow, seats[0]);
 		
 		expectedRow = 0b101_1010_010;
-		sol.convertSeatToBinary("1J", reservedSeats);
-		assertEquals(expectedRow, reservedSeats[0]);
+		sol.convertSeatToBinary("1J", seats);
+		assertEquals(expectedRow, seats[0]);
 
 		expectedRow = 0b000_0010_000;
-		sol.convertSeatToBinary("2F", reservedSeats);
-		assertEquals(expectedRow, reservedSeats[1]);
+		sol.convertSeatToBinary("2F", seats);
+		assertEquals(expectedRow, seats[1]);
 		
 		expectedRow = 0b000_0010_100;
-		sol.convertSeatToBinary("2H", reservedSeats);
-		assertEquals(expectedRow, reservedSeats[1]);
+		sol.convertSeatToBinary("2H", seats);
+		assertEquals(expectedRow, seats[1]);
 
 		expectedRow = 0b101_1010_011;
-		sol.convertSeatToBinary("1K", reservedSeats);
-		assertEquals(expectedRow, reservedSeats[0]);
+		sol.convertSeatToBinary("1K", seats);
+		assertEquals(expectedRow, seats[0]);
 		
 		
 		final int N2 = 25;
-		final int reservedSeats2[] = new int[N2];
+		final int seats2[] = new int[N2];
 		
 		expectedRow = 0b000_0000_001;
-		sol.convertSeatToBinary("21K", reservedSeats2);
-		assertEquals(expectedRow, reservedSeats2[20]);
+		sol.convertSeatToBinary("21K", seats2);
+		assertEquals(expectedRow, seats2[20]);
 		
 		expectedRow = 0b000_0010_000;
-		sol.convertSeatToBinary("17F", reservedSeats2);
-		assertEquals(expectedRow, reservedSeats2[16]);
+		sol.convertSeatToBinary("17F", seats2);
+		assertEquals(expectedRow, seats2[16]);
 
 	}
 	
@@ -100,34 +100,33 @@ public class TestSolution1 {
 		Solution1 sol = new Solution1();
 		
 		int N = 2;
-//		int seats[] = new int[N];
-		String resevedSeats = "1A 2F 1C";
+		String reservedSeats = "1A 2F 1C";
 		//
-		int result = sol.solution(N, resevedSeats);
+		int result = sol.solution(N, reservedSeats);
 		//
 		assertEquals(4, result);
 		
 		N = 1;
-		resevedSeats = "";
-		result = sol.solution(N, resevedSeats);
+		reservedSeats = "";
+		result = sol.solution(N, reservedSeats);
 		//
 		assertEquals(3, result);
 		
 		N = 45;
-		resevedSeats = "";
-		result = sol.solution(N, resevedSeats);
+		reservedSeats = "";
+		result = sol.solution(N, reservedSeats);
 		//
 		assertEquals(3*45, result);
 
 		N = 50;
-		resevedSeats = "1C 10G 1B";
-		result = sol.solution(N, resevedSeats);
+		reservedSeats = "1C 10G 1B";
+		result = sol.solution(N, reservedSeats);
 		//
 		assertEquals(150-1, result);
 		
 		N = 50;
-		resevedSeats = "1C 10G 1B 7F 50K";
-		result = sol.solution(N, resevedSeats);
+		reservedSeats = "1C 10G 1B 7F 50K";
+		result = sol.solution(N, reservedSeats);
 		//
 		assertEquals(150-3, result);
 
