@@ -16,8 +16,7 @@ public class Solution3 {
 
 	public int solution(String S) {
 		// write your code in Java SE 8
-		String MAX_BIN_PLUS_ONE = "1 00 000  00 000  00 000  00 000";
-		Integer MAX = Integer.parseInt(MAX_BIN_PLUS_ONE.replaceAll("\\s+", ""), 2) - 1;
+		Integer MAX = 0b11_111_11_111_11_111_11_111;
 
 		// System.out.println("MAX = "+ MAX);
 		Stack<Integer> stack = new Stack();
