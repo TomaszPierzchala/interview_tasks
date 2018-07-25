@@ -2,6 +2,8 @@ package eu.tp.interview_tasks.tt;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
@@ -55,7 +57,10 @@ public class Solution2 {
 		theMap.entrySet().stream()
 		.forEach(ent->System.out.println(ent.getKey() + " : " + ent.getValue()));
 		
+
+		Set<Integer> resultSet = new TreeSet<Integer>();
+		int[] resultTable = resultSet.stream().mapToInt(Number::intValue).toArray();
 		
-		return new int[1];
+		return resultTable;
 	}
 }
