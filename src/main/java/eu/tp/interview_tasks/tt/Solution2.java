@@ -2,8 +2,10 @@ package eu.tp.interview_tasks.tt;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.BinaryOperator;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
@@ -27,12 +29,13 @@ public class Solution2 {
 		//   2) perform the Map modification equivalent to the described array modification for a segment of size K 
 		// starting at position [0] of table A (increase counter value for key==A[i]+1 
 		// and decrease counter for key==A[i] as it was changed with new increased value A[i]+1)
-		//   3) then iterate over table A, moving the segment/window of size K by 1 
+		//   3) check if there is a Leader of A add it to result TreeSet to have
+		// unique and sorted elements.
+		//   4) then iterate over table A, moving the segment/window of size K by 1 
 		// and modifying in parallel the Map equivalently to described above table A modification  
 		// (increase counter value for key which get into the window 
 		// and decrease counter for key which flew out the window respectively).
-		// Every time after step 2) or 3) check if there is a Leader of A add it to result TreeSet to have
-		// unique and sorted elements.
+		// Every time after step 4) check if there is a Leader of A add it to result TreeSet
 		//   4) finally after the segment K reaches the end of the table A,
 		// return result Set as a table. 
 		
@@ -57,10 +60,24 @@ public class Solution2 {
 		theMap.entrySet().stream()
 		.forEach(ent->System.out.println(ent.getKey() + " : " + ent.getValue()));
 		
-
+		// 3) check if there is a Leader of A add it to result TreeSet
 		Set<Integer> resultSet = new TreeSet<Integer>();
-		int[] resultTable = resultSet.stream().mapToInt(Number::intValue).toArray();
 		
+//		Comparator<Map.Entry<Integer,Long>> entryByValueComparator = Comparator.comparing(Map.Entry::getValue);
+		Optional<Map.Entry<Integer,Long>> optEntry = 
+				theMap.entrySet().stream()
+				.reduce(BinaryOperator.maxBy(Map.Entry.comparingByValue()));
+//				.reduce(BinaryOperator.maxBy(entryByValueComparator));
+		
+		Map.Entry<Integer,Long> maxEntry = optEntry.get();
+		System.out.println("max entry : ("+maxEntry.getKey()+", "+maxEntry.getValue()+")");
+		int maxCounter = maxEntry.getValue().intValue();
+		if(2*maxCounter > A.length) {
+			resultSet.add(maxEntry.getKey());
+		}
+		
+		// 4) return result Set as a table
+		int[] resultTable = resultSet.stream().mapToInt(Number::intValue).toArray();
 		return resultTable;
 	}
 }
