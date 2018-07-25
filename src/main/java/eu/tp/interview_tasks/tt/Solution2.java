@@ -15,7 +15,10 @@ public class Solution2 {
 
 		Solution2 sol = new Solution2();
 		
-		sol.solution(2, 3, new int [] { 1,0,2,3,1});
+		int K=2, M=3;
+		int [] A = new int [] { 1,1,2,3,1};
+		System.out.println("solution( "+K+", "+M+", "+Arrays.toString(A)+" ) = "
+				+ Arrays.toString( sol.solution(K, M, A) ));
 	}
 
 	public int[] solution(int K, int M, int[] A) {
@@ -45,20 +48,15 @@ public class Solution2 {
 //		1) create the Map
 		Map<Integer, Long> theMap = Arrays.stream(A).boxed().collect(Collectors.groupingBy(UnaryOperator.identity(), Collectors.counting()  ));
 		
-		theMap.entrySet().stream()
-		.forEach(ent->System.out.println(ent.getKey() + " : " + ent.getValue()));
-		System.out.println();
+		//printOutTheMap(theMap); System.out.println();
 		
 //		2) Map modification equivalent to the described array modification for a segment K length started at A[0]
 		for(int i=0;i<K;i++) {
-			System.out.println("A="+A[i]);
-			theMap.merge(A[i]+1, 1l, Long::sum);
-			theMap.merge(A[i],  -1l, Long::sum);
+//			System.out.println("A="+A[i]);
+			getIntoSegmentMapModification(i, A, theMap);
 		}
-		System.out.println();
 		
-		theMap.entrySet().stream()
-		.forEach(ent->System.out.println(ent.getKey() + " : " + ent.getValue()));
+		//printOutTheMap(theMap); System.out.println();
 		
 //		3) check if there is a Leader of A add it to result TreeSet
 		Set<Integer> resultSet = new TreeSet<Integer>();
@@ -67,10 +65,23 @@ public class Solution2 {
 		findLeaderAndAddItToResultSet(TABLE_LENGTH, theMap, resultSet);
 		
 //		4) then iterate over table A, moving the segment/window of size K by 1 
-		for(int startSegmentAt=1; startSegmentAt<A.length-K+1; startSegmentAt++) {
-			// modify the Map after segment move
+		for(int beforeStartedAt=0; beforeStartedAt<A.length-K; beforeStartedAt++) {
+			
+			//System.out.println(beforeStartedAt+":"); resultSet.stream().forEach(System.out::println);
+			
+			// modify the Map after segment move :
+			//
+			// theMap modification for flew out from the segment at A[beforeStartedAt]
+			flewOutSegmentMapModification(beforeStartedAt, A, theMap);
+			
+			// theMap modification for get into the segment at A[beforeStartedAt+K] 
+			getIntoSegmentMapModification(beforeStartedAt+K, A, theMap);
+			//
+			//printOutTheMap(theMap);
+			//
 			findLeaderAndAddItToResultSet(TABLE_LENGTH, theMap, resultSet);
 		}
+		//resultSet.stream().forEach(System.out::println);
 		
 //		5) return result Set as a table
 		int[] resultTable = resultSet.stream().mapToInt(Number::intValue).toArray();
@@ -82,7 +93,7 @@ public class Solution2 {
 		Optional<Map.Entry<Integer, Long>> 
 				optEntry = theMap.entrySet().stream()
 								 .reduce(BinaryOperator.maxBy(Map.Entry.comparingByValue()));
-
+	
 		Map.Entry<Integer, Long> maxEntry = optEntry.get();
 		
 		int maxCounter = maxEntry.getValue().intValue();
@@ -90,5 +101,20 @@ public class Solution2 {
 		if (2 * maxCounter > tableLength) {
 			resultSet.add(maxEntry.getKey());
 		}
+	}
+
+	private void getIntoSegmentMapModification(int i, int[] A, Map<Integer, Long> theMap) {
+		theMap.merge(A[i]+1, 1l, Long::sum);
+		theMap.merge(A[i],  -1l, Long::sum);
+	}
+
+	private void flewOutSegmentMapModification(int i, int[] A, Map<Integer, Long> theMap) {
+		theMap.merge(A[i],    1l, Long::sum);
+		theMap.merge(A[i]+1, -1l, Long::sum);
+	}
+
+	private void printOutTheMap(Map<Integer, Long> theMap) {
+		theMap.entrySet().stream()
+		.forEach(ent->System.out.println(ent.getKey() + " : " + ent.getValue()));
 	}
 }
