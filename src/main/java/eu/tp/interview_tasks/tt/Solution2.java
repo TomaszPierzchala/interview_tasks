@@ -36,20 +36,20 @@ public class Solution2 {
 		// (increase counter value for key which get into the window 
 		// and decrease counter for key which flew out the window respectively).
 		// Every time after step 4) check if there is a Leader of A add it to result TreeSet
-		//   4) finally after the segment K reaches the end of the table A,
+		//   5) finally after the segment K reaches the end of the table A,
 		// return result Set as a table. 
 		
 		
 		// write your code in Java SE 8
 		
-		// 1) create the Map
+//		1) create the Map
 		Map<Integer, Long> theMap = Arrays.stream(A).boxed().collect(Collectors.groupingBy(UnaryOperator.identity(), Collectors.counting()  ));
 		
 		theMap.entrySet().stream()
 		.forEach(ent->System.out.println(ent.getKey() + " : " + ent.getValue()));
 		System.out.println();
 		
-		// 2) Map modification equivalent to the described array modification for a segment K length started at A[0]
+//		2) Map modification equivalent to the described array modification for a segment K length started at A[0]
 		for(int i=0;i<K;i++) {
 			System.out.println("A="+A[i]);
 			theMap.merge(A[i]+1, 1l, Long::sum);
@@ -60,24 +60,35 @@ public class Solution2 {
 		theMap.entrySet().stream()
 		.forEach(ent->System.out.println(ent.getKey() + " : " + ent.getValue()));
 		
-		// 3) check if there is a Leader of A add it to result TreeSet
+//		3) check if there is a Leader of A add it to result TreeSet
 		Set<Integer> resultSet = new TreeSet<Integer>();
+		final int TABLE_LENGTH = A.length;
 		
-//		Comparator<Map.Entry<Integer,Long>> entryByValueComparator = Comparator.comparing(Map.Entry::getValue);
-		Optional<Map.Entry<Integer,Long>> optEntry = 
-				theMap.entrySet().stream()
-				.reduce(BinaryOperator.maxBy(Map.Entry.comparingByValue()));
-//				.reduce(BinaryOperator.maxBy(entryByValueComparator));
+		findLeaderAndAddItToResultSet(TABLE_LENGTH, theMap, resultSet);
 		
-		Map.Entry<Integer,Long> maxEntry = optEntry.get();
-		System.out.println("max entry : ("+maxEntry.getKey()+", "+maxEntry.getValue()+")");
-		int maxCounter = maxEntry.getValue().intValue();
-		if(2*maxCounter > A.length) {
-			resultSet.add(maxEntry.getKey());
+//		4) then iterate over table A, moving the segment/window of size K by 1 
+		for(int startSegmentAt=1; startSegmentAt<A.length-K+1; startSegmentAt++) {
+			// modify the Map after segment move
+			findLeaderAndAddItToResultSet(TABLE_LENGTH, theMap, resultSet);
 		}
 		
-		// 4) return result Set as a table
+//		5) return result Set as a table
 		int[] resultTable = resultSet.stream().mapToInt(Number::intValue).toArray();
 		return resultTable;
+	}
+
+	void findLeaderAndAddItToResultSet(int tableLength, Map<Integer, Long> theMap, Set<Integer> resultSet) {
+		
+		Optional<Map.Entry<Integer, Long>> 
+				optEntry = theMap.entrySet().stream()
+								 .reduce(BinaryOperator.maxBy(Map.Entry.comparingByValue()));
+
+		Map.Entry<Integer, Long> maxEntry = optEntry.get();
+		
+		int maxCounter = maxEntry.getValue().intValue();
+		
+		if (2 * maxCounter > tableLength) {
+			resultSet.add(maxEntry.getKey());
+		}
 	}
 }

@@ -1,6 +1,12 @@
 package eu.tp.interview_tasks.tt;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.junit.Test;
 
@@ -66,5 +72,52 @@ public class TestSolution2 {
 		//
 		assertArrayEquals(Excpected, result);
 		
+	}
+	
+	@Test
+	public void TestFindLeaderAndAddItToResultSet() {
+		Solution2 sol = new Solution2();
+		// map { (0 : 1), (1: 5), (4: 3), (7: 10) };
+		final Map<Integer, Long> map = new HashMap<>();
+		map.put(0, 1l);
+		map.put(1, 5l);
+		map.put(4, 3l);
+		map.put(7, 10l);
+		
+		final int tableLength = 18;
+		
+		final Set<Integer> expectedSet = new TreeSet<Integer>();
+		// Expected Leader is 7 
+		expectedSet.add(7);
+		
+		final Set<Integer> resultSet = new TreeSet<Integer>();
+// RUN		
+		sol.findLeaderAndAddItToResultSet(tableLength, map, resultSet);
+// TEST
+		assertEquals(expectedSet, resultSet);
+		
+		// now remove key=7 we are left with
+		// map { (0 : 1), (1: 5), (4: 3)};
+		map.remove(7);
+		// we do NOT expect key=1 to be added, as tableLength is 18 (2*5 is not > 18)
+// RUN
+		sol.findLeaderAndAddItToResultSet(tableLength, map, resultSet);
+// TEST
+		assertEquals(expectedSet, resultSet);
+		
+		// decreasing tableLength to 9, key=1 will become another leader
+		// map { (0 : 1), (1: 5), (4: 3)};
+		int newTableLength = 9;
+		expectedSet.add(1);
+// RUN
+		sol.findLeaderAndAddItToResultSet(newTableLength, map, resultSet);
+// TEST
+		assertEquals(expectedSet, resultSet);
+		
+		// calling once again with same parameters NOTHING change
+// RUN
+		sol.findLeaderAndAddItToResultSet(newTableLength, map, resultSet);
+// TEST
+		assertEquals(expectedSet, resultSet);
 	}
 }
