@@ -72,7 +72,22 @@ public class TestSolution2 {
 		 */
 		//
 		assertArrayEquals(Excpected, result);
+	
 		
+		// five
+		A = new int[] {3, 2, 1};
+		K = 1; M = 3;
+		Excpected = new int[] {2, 3};
+		//
+		result = sol.solution(K, M, A);
+		/*
+		 * [ 4,			  2,1] : no leader
+		 * [ 3,		3,		1] : leader = 3
+		 * [ 3,2,		 	2] : leader = 2
+		 */
+		//
+		assertArrayEquals(Excpected, result);
+
 	}
 	
 	@Test
