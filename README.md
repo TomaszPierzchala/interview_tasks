@@ -27,7 +27,7 @@ Definitions:
  The returend array is ASC ordered without duplication.
 
 * #### The word machine - Solution3.java
-to be filled in a caouple of days - I am at holidays now.
+to be filled in a couple of days - I am at holidays now.
 
 --------------------
 I found task to be difficult in ascending order as : (the easiest) 3 , 1, 2 (the most dififcult).
