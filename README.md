@@ -25,3 +25,9 @@ Definitions:
  The method `public int[] solution(int K, int M, int[] A)` returns a table of all elements which can become a main element,
  after increasing by 1 every element of exactly one segment of A of length K (table A consist of integers not bigger then M).
  The returend array is ASC ordered without duplication.
+
+* #### The word machine - Solution3.java
+to be filled in a caouple of days - I am at holidays now.
+
+--------------------
+I found task to be difficult in ascending order as : (the easiest) 3 , 1, 2 (the most dififcult).
