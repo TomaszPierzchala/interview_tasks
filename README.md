@@ -42,6 +42,7 @@ Posible errors:
 - overflow (>2<sup>20</sup> -1) or underflow (<0) errors
 - an error when the machine operations needs more numbers than is currently on the stack
 - an error when the stack is empty after performing all operations - nothing to return
+
 The result function returns ```-1``` in case of an error.
 
 For an input string ```13 DUP 4 POP 5 DUP + DUP + -``` the result function ```public int solution(String S)``` should return 7.
