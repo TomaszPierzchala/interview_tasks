@@ -45,8 +45,7 @@ Posible errors:
 
 The result function returns ```-1``` in case of an error.
 
-For example, an input string ```13 DUP 4 POP 5 DUP + DUP + -``` the result function ```public int solution(String S)``` should return 7.
-
+For example, an input string ```13 DUP 4 POP 5 DUP + DUP + -``` causes the result function ```public int solution(String S)``` to return 7.
 
 --------------------
 I found task to be difficult in ascending order as : (the easiest) 3 , 1, 2 (the most dififcult).
