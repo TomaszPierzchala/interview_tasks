@@ -66,5 +66,10 @@ public class TestSolution3 {
 		operationsSequence = "75 POP";
 		result = sol.solution(operationsSequence);
 		assertEquals(-1, result);
+		
+		// too few arguments for '-' operation (should be at least two arguments)
+		operationsSequence = "19 -";
+		result = sol.solution(operationsSequence);
+		assertEquals(-1, result);
 	}
 }
