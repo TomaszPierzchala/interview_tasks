@@ -45,7 +45,7 @@ public class Solution2 {
 		
 		// write your code in Java SE 8
 		
-//		1) create the Map
+//		1) create the Map (key= number from tab A; value= appearance count)
 		Map<Integer, Long> theMap = Arrays.stream(A).boxed().collect(Collectors.groupingBy(UnaryOperator.identity(), Collectors.counting()  ));
 		
 		//printOutTheMap(theMap); System.out.println();
@@ -79,7 +79,7 @@ public class Solution2 {
 			//
 			//printOutTheMap(theMap);
 			//
-			findLeaderAndAddItToResultSet(TABLE_LENGTH, theMap, resultSet);
+			findLeaderAndAddItToResultSet(TABLE_LENGTH, theMap, resultSet); 
 		}
 		//resultSet.stream().forEach(System.out::println);
 		
@@ -99,6 +99,7 @@ public class Solution2 {
 		int maxCounter = maxEntry.getValue().intValue();
 		
 		if (2 * maxCounter > tableLength) {
+			// check if KEY is the MAIN ELEMENT
 			resultSet.add(maxEntry.getKey());
 		}
 	}
