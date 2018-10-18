@@ -29,7 +29,7 @@ public class Solution1 {
 		reserveSeats(S, seats);
 		// printSeats(seats);
 		
-		return (int) Arrays.stream(seats).map(i->(i^0b111_1110_111 | i^0b111_0111_111)) // to pass empty seats only
+		return (int) Arrays.stream(seats).map(i->(i^0b111_1110_111 | i^0b111_0111_111)) // to pass 1=empty seats only, 0=taken
 		.flatMap(i-> ( Arrays.stream(ROW_FAMILY_GROUPS).map(famGroup-> ((i&famGroup|famGroup) == (i&famGroup)) ? 1:0) ) )
 		//.peek(System.out::println) /*debug only */
 		.filter(r->r==1).count();
