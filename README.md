@@ -51,7 +51,7 @@ For example, an input string ```13 DUP 4 POP 5 DUP + DUP + -``` causes the resul
 
 --------------------
 #### Remark
-I found the task 3rd to be the easiest, while the 2nd to be the most difficult.
+I found the task 3<sup>rd</sup> to be the easiest, while the 2<sup>nd</sup> to be the most difficult.
 
-I think the 1st task has very nice solution with base on bits operation with streams mechanism.
+I think the 1<sup>st</sup> task has very nice solution with base on bits operation with streams mechanism.
 
