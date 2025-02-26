@@ -12,8 +12,8 @@ N   |   |   |   |X| | | | |X| | |
 
 An example string S = "2B 7E 3K" can represent taken seats in arbitrary order.
 
-Find a method ` public int solution(int N, String S)` which returns MAX number of 3 person families still possible to find a place without family splits, where N is number of rows and S in string of already taken seats mentioned above,
-returns the maximum number of 3-persons families that can be seated without separation (either by new row or by corridor between seats C&D or G&H).
+Find a method ` public int solution(int N, String S)` which returns the maximum number of 3-persons families that can be seated without separation (either by new row or by corridor between seats C&D or G&H), 
+where N is number of rows and S in string of already taken seats mentioned above.
 
 The JUnit tests are placed in TestSolution1.java.
 
