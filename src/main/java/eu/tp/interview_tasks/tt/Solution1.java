@@ -9,11 +9,11 @@ public class Solution1 {
 	final private static int MID2  = 0b000_0111_000;
 	final private static int RIGHT = 0b000_0000_111;
 
-	final private static int POSSIBLE_ROW_MAX_FAMILY_ARRANGE1 = LEFT|MID1|RIGHT;
-	final private static int POSSIBLE_ROW_MAX_FAMILY_ARRANGE2 = LEFT|MID2|RIGHT;
+	final private static int POSSIBLE_ROW_MAX_FAMILY_ARRANGE1 = LEFT | MID1 | RIGHT;
+	final private static int POSSIBLE_ROW_MAX_FAMILY_ARRANGE2 = LEFT | MID2 | RIGHT;
 
 	// Same time possible one family places - need for projections then for counting
-	final private static int[] SAME_TIME_POSSIBLE_ONE_FAMILY_PLACES = { LEFT, MID1 | MID2, RIGHT};
+	final private static int[] SAME_TIME_POSSIBLE_ONE_FAMILY_PLACES = {LEFT, MID1 | MID2, RIGHT};
 
 	public static void main(String[] args) {
 		String reservedSeats = "1A 2F 1C";
